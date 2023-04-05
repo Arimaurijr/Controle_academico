@@ -1,4 +1,3 @@
-
 create database DBFaculdade;
 GO
 
@@ -144,7 +143,9 @@ join Disciplina d on im.codigo = d.codigo
 where a.ra = 1;
 
 
-SELECT m.ano, m.semestre, m.id as 'ID Matricula', a.nome as 'Nome do aluno', d.nome as 'Nome da disciplina', im.nota1 as "Nota 1", im.nota2 as "Nota 2", im.sub as "Sub",
+SELECT m.ano, m.semestre, m.id as 'ID Matricula', a.nome as 'Nome do aluno', 
+    d.nome as 'Nome da disciplina', im.nota1 as "Nota 1", im.nota2 as "Nota 2",
+     im.sub as "Sub",
 CASE
 WHEN (sub IS NULL) THEN (NOTA1 + NOTA2)/2
 WHEN (sub > Nota1) AND (Nota1 < Nota2) THEN (sub + Nota2)/2
@@ -155,3 +156,6 @@ JOIN Item_Matricula im ON m.id = im.id
 JOIN Disciplina d ON im.codigo = d.codigo
 WHERE a.ra = 2;
 
+ALTER TABLE Item_Matricula ADD
+    media DECIMAL(4,2)
+GO
